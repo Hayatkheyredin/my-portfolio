@@ -99,6 +99,62 @@ document.addEventListener('DOMContentLoaded', function () {
     revealObserver.observe(el);
   });
 
+  // Testimonials carousel (horizontal scroll + arrow buttons)
+  const testimonialCarousel = document.getElementById('testimonialCarousel');
+  const testimonialPrev = document.getElementById('testimonialPrev');
+  const testimonialNext = document.getElementById('testimonialNext');
+
+  function setTestimonialCardWidths() {
+    if (!testimonialCarousel) return;
+    const w = testimonialCarousel.clientWidth;
+    const gap = 28;
+    const isWide = window.innerWidth >= 951;
+    const cardW = isWide ? (w - 2 * gap) / 3 : Math.min(w * 0.92, 400);
+    testimonialCarousel.style.setProperty('--card-w', `${Math.max(240, cardW)}px`);
+  }
+
+  function updateTestimonialNav() {
+    if (!testimonialCarousel || !testimonialPrev || !testimonialNext) return;
+    const { scrollLeft, scrollWidth, clientWidth } = testimonialCarousel;
+    const atStart = scrollLeft <= 2;
+    const atEnd = scrollLeft + clientWidth >= scrollWidth - 2;
+    testimonialPrev.disabled = atStart;
+    testimonialNext.disabled = atEnd;
+  }
+
+  if (testimonialCarousel && testimonialPrev && testimonialNext) {
+    const scrollPage = (dir) => {
+      testimonialCarousel.scrollBy({
+        left: dir * testimonialCarousel.clientWidth,
+        behavior: 'smooth'
+      });
+    };
+
+    const sync = () => {
+      setTestimonialCardWidths();
+      updateTestimonialNav();
+    };
+
+    sync();
+    requestAnimationFrame(sync);
+    window.addEventListener('resize', sync);
+
+    testimonialPrev.addEventListener('click', () => scrollPage(-1));
+    testimonialNext.addEventListener('click', () => scrollPage(1));
+
+    testimonialCarousel.addEventListener('scroll', updateTestimonialNav, { passive: true });
+
+    testimonialCarousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        scrollPage(-1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        scrollPage(1);
+      }
+    });
+  }
+
   // Contact Form Handling
   const form = document.getElementById('contactForm');
   if (form) {
