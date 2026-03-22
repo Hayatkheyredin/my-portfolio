@@ -37,12 +37,16 @@ Open `index.html` in your browser, or use a simple local server if you prefer.
 
 ---
 
-## Project layout
+## Project layout (repository root)
+
+The site files live at the **root** of this repo so **GitHub Pages** can serve `index.html` correctly:
 
 - `index.html` – main page  
 - `style.css` – styles  
 - `script.js` – interactions  
 - `assets/` – images and icons  
+
+> If you used to edit inside a `sm portifolio` folder, everything is now at the repo root—open this `portfolio` folder in your editor.
 
 ## Tips
 
