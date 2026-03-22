@@ -1256,13 +1256,30 @@ section h2::after {
 .ci-ico {
   width: 38px;
   height: 38px;
+  min-width: 38px;
+  min-height: 38px;
   border-radius: 12px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 215, 0, 0.12);
   border: 1px solid rgba(255, 215, 0, 0.18);
   color: var(--primary-color);
   flex: 0 0 auto;
+  line-height: 0;
+}
+
+.ci-ico .ci-svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.ci-ico .ci-svg-brand {
+  width: 19px;
+  height: 19px;
 }
 
 .ci-text {
@@ -1609,6 +1626,14 @@ a.footer-contact-line:hover {
   pointer-events: none;
 }
 
+.footer-brand-img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
 .footer-social-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(255, 215, 0, 0.35);
@@ -1650,14 +1675,16 @@ a.footer-contact-line:hover {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   border: none;
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.25);
+  padding: 0;
+  line-height: 0;
+  box-sizing: border-box;
 }
 
 .fab:hover {
@@ -1666,20 +1693,36 @@ a.footer-contact-line:hover {
 }
 
 .fab-chat {
-  left: 1.25rem;
+  right: 1.25rem;
+  left: auto;
   bottom: 1.25rem;
   background: var(--primary-color);
-  color: #1a1030;
 }
 
-.fab-chat svg {
-  width: 24px;
-  height: 24px;
+.fab-chat-inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.fab-telegram-mark {
   display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 32px;
+  max-height: 32px;
+  margin: 0;
+  overflow: visible;
+  pointer-events: none;
 }
 
 .fab-top {
-  right: 1.25rem;
+  left: 1.25rem;
+  right: auto;
   bottom: 1.25rem;
   background: var(--primary-color);
   color: #111;
@@ -1689,6 +1732,9 @@ a.footer-contact-line:hover {
   width: 22px;
   height: 22px;
   display: block;
+  flex-shrink: 0;
+  margin: 0;
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {
@@ -1715,11 +1761,13 @@ a.footer-contact-line:hover {
   }
 
   .fab-chat {
-    left: 0.75rem;
+    right: 0.75rem;
+    left: auto;
   }
 
   .fab-top {
-    right: 0.75rem;
+    left: 0.75rem;
+    right: auto;
   }
 }
 
