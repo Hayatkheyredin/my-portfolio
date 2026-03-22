@@ -51,6 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  const scrollToTopBtn = document.getElementById('scrollToTop');
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   // Animated Counters
   const counters = document.querySelectorAll('.stat-value');
   const options = { threshold: 0.5 };
