@@ -1,21 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Hayat Khayredin | Digital Marketer &amp; Web Developer</title>
+  <title>Hayat Khayredin | Modest Fashion &amp; Halal Brand Growth</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home-hero.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Fonts -->
+  <!-- Fonts: Poppins + Plus Jakarta Sans (display) + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind: preflight off so legacy site styles stay intact -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#FBBF24',
+              amber: '#D97706',
+            },
+          },
+          boxShadow: {
+            glow: '0 0 48px rgba(251, 191, 36, 0.22)',
+          },
+        },
+      },
+    };
+  </script>
 </head>
 
 <body>
-  <header class="site-header">
+  <header class="site-header hk-header" id="siteHeader">
     <div class="container header-inner">
       <a class="brand brand-logo" href="#hero">
         <span class="logo-symbol">H</span>
@@ -30,47 +54,111 @@
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button id="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Light / dark mode">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="nav-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero" id="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="logo-large-display">
-            <span class="logo-symbol-large">H</span>
-          </div>
-        
-          <h1 class="hero-title">Tech-Savvy Marketer</h1>
-          <p class="hero-tagline">Your Virtual Assistant</p>
-          <p class="mini-bio">From strategy and content calendars to ads and analytics - and a professional website for your business. I'm not just a marketer; I bring the full stack so you can launch and grow, remotely.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="#contact">Let's Work Together</a>
-            <a class="btn ghost" href="#portfolio">View My Work</a>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-value" data-count="20" data-display="20+">20+</div>
-              <div class="stat-label">Brands Scaled</div>
+    <!-- ========== HOMEPAGE: Hero + proof (Tailwind) — 2026 niche positioning ========== -->
+    <section id="hero" class="hk-hero relative overflow-hidden bg-zinc-950 pb-20 pt-[calc(5.5rem+env(safe-area-inset-top,0px))] font-sans sm:pb-24 sm:pt-28">
+      <!-- Ambient glow + subtle grid (premium, not noisy) -->
+      <div class="hk-bg-glow pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_15%_0%,rgba(251,191,36,0.1),transparent_55%),radial-gradient(ellipse_55%_45%_at_90%_75%,rgba(251,191,36,0.06),transparent_50%)]" aria-hidden="true"></div>
+      <div class="hk-bg-grid pointer-events-none absolute inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(260px,400px)] lg:gap-10 xl:gap-14">
+          <!-- Copy column -->
+          <div class="order-2 min-w-0 text-center lg:order-1 lg:text-left">
+            <p class="hk-eyebrow mb-4 inline-flex items-center gap-2 rounded-full border border-amber-400/25 bg-white/[0.06] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-brand-gold shadow-sm backdrop-blur-md sm:text-xs">
+              <span class="h-2 w-2 shrink-0 rounded-full bg-brand-gold shadow-[0_0_14px_rgba(251,191,36,0.75)]" aria-hidden="true"></span>
+              Tech-Savvy Marketer
+            </p>
+
+            <h1 class="font-display text-[1.35rem] font-extrabold leading-snug tracking-tight text-white sm:text-2xl lg:text-[1.85rem] xl:text-[2rem] [text-wrap:balance]">
+              I love coming up with <span class="text-brand-gold">real results</span>
+            </h1>
+
+            <p class="mt-4 font-display text-sm font-semibold text-brand-gold sm:text-[0.95rem]">
+              Social Media Manager · Digital Marketer · Virtual Assistant
+            </p>
+
+            <!-- CTAs: "View My Work" primary (results first) -->
+            <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:justify-start">
+              <a href="#portfolio" class="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-gold to-amber-400 px-7 py-3.5 text-sm font-bold text-zinc-950 shadow-[0_6px_28px_rgba(251,191,36,0.38)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_36px_rgba(251,191,36,0.48)] sm:w-auto sm:min-w-[220px]">
+                <span>View My Work</span>
+                <span class="hidden text-xs font-semibold opacity-90 sm:inline">— See real results</span>
+                <i class="fas fa-arrow-right text-xs transition group-hover:translate-x-0.5"></i>
+              </a>
+              <a href="#contact" class="hk-cta-secondary inline-flex w-full items-center justify-center rounded-full border border-white/25 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:border-brand-gold/55 hover:bg-white/[0.06] sm:w-auto">
+                Let's Work Together
+              </a>
             </div>
-            <div class="stat">
-              <div class="stat-value" data-count="20000" data-display="20000+">20000+</div>
-              <div class="stat-label">Reach Generated</div>
+
+            <!-- Stats: gradient cards + trend icons (20M+ reach fixed) -->
+            <div class="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <div class="hk-stat-card group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.09] to-white/[0.02] p-4 text-left shadow-sm backdrop-blur-sm transition duration-300 hover:border-brand-gold/35 hover:shadow-glow">
+                <div class="flex items-start justify-between gap-2">
+                  <span class="text-2xl font-bold tabular-nums text-brand-gold sm:text-3xl"><span class="stat-value" data-count="20" data-display="20+">20+</span></span>
+                  <span class="text-amber-400/90" aria-hidden="true"><i class="fas fa-arrow-trend-up"></i></span>
+                </div>
+                <p class="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-zinc-500">Brands served</p>
+              </div>
+              <div class="hk-stat-card group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.09] to-white/[0.02] p-4 text-left shadow-sm backdrop-blur-sm transition duration-300 hover:border-brand-gold/35 hover:shadow-glow">
+                <div class="flex items-start justify-between gap-2">
+                  <span class="text-2xl font-bold tabular-nums text-brand-gold sm:text-3xl">20k+</span>
+                  <span class="text-amber-400/90" aria-hidden="true"><i class="fas fa-arrow-trend-up"></i></span>
+                </div>
+                <p class="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-zinc-500">Reach generated</p>
+              </div>
+              <div class="hk-stat-card group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.09] to-white/[0.02] p-4 text-left shadow-sm backdrop-blur-sm transition duration-300 hover:border-brand-gold/35 hover:shadow-glow">
+                <div class="flex items-start justify-between gap-2">
+                  <span class="text-2xl font-bold tabular-nums text-brand-gold sm:text-3xl"><span class="stat-value" data-count="15" data-display="15+">15+</span></span>
+                  <span class="text-amber-400/90" aria-hidden="true"><i class="fas fa-arrow-trend-up"></i></span>
+                </div>
+                <p class="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-zinc-500">Campaigns &amp; launches</p>
+              </div>
             </div>
-            <div class="stat">
-              <div class="stat-value" data-count="15" data-display="15+">15+</div>
-              <div class="stat-label">Campaigns Run</div>
-            </div>
+
+            <!-- Instant-trust quote (below-fold proof) -->
+            <blockquote class="hk-hero-quote mt-10 rounded-2xl border border-brand-gold/25 bg-gradient-to-br from-brand-gold/[0.12] via-transparent to-transparent p-5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm sm:p-6">
+              <p class="font-display text-base italic leading-relaxed text-zinc-100 sm:text-lg">
+                “Hayat took our modest brand from invisible to viral — <strong class="font-semibold not-italic text-brand-gold">+420% reach</strong> in 3 months.”
+              </p>
+              <footer class="mt-4 flex items-center gap-3 border-t border-white/10 pt-4 text-sm">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-xs font-bold text-brand-gold">LR</span>
+                <div>
+                  <cite class="not-italic font-semibold text-zinc-100">Layla R.</cite>
+                  <p class="text-xs text-zinc-500">Founder, Amira Studio <span class="text-zinc-600">(sample)</span></p>
+                </div>
+              </footer>
+            </blockquote>
           </div>
-        </div>
-        <div class="hero-profile">
-          <div class="profile-placeholder">
-            <img src="assets/images/profile.png" alt="Hayat Khayredin">
+
+          <!-- Photo: large circle, gradient ring, subtle overlap on xl -->
+          <div class="order-1 flex justify-center lg:order-2 lg:justify-end xl:-mt-4">
+            <div class="relative w-full max-w-[min(100%,380px)]">
+              <div class="relative mx-auto aspect-square w-[min(100%,380px)]">
+                <div class="absolute -inset-[3px] rounded-full bg-gradient-to-br from-brand-gold via-amber-300 to-amber-600 opacity-80 blur-[3px]" aria-hidden="true"></div>
+                <div class="absolute -inset-[2px] rounded-full bg-gradient-to-br from-brand-gold via-amber-200 to-amber-600" aria-hidden="true"></div>
+                <div class="relative h-full w-full overflow-hidden rounded-full border-[3px] border-zinc-950 bg-zinc-900 shadow-[0_0_64px_rgba(251,191,36,0.28)]">
+                  <img src="assets/images/profile.png" alt="Hayat Khayredin — professional portrait" class="h-full w-full object-cover" width="480" height="480" loading="eager" decoding="async">
+                </div>
+                <p class="hk-photo-badge absolute bottom-3 left-1/2 z-10 max-w-[92%] -translate-x-1/2 rounded-full border border-white/15 bg-black/75 px-3 py-2 text-center text-[0.7rem] font-semibold text-white shadow-lg backdrop-blur-md sm:bottom-4 sm:px-4 sm:text-sm">
+                  <span aria-hidden="true" class="mr-1">💛</span> Here to help you grow
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+    <!-- ========== / homepage hero ========== -->
 
     <section class="about" id="about">
       <div class="container about-grid">

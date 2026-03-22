@@ -3,6 +3,36 @@ document.addEventListener('DOMContentLoaded', function () {
   const navToggle = document.getElementById('nav-toggle');
   const nav = document.getElementById('main-nav');
   const header = document.querySelector('.site-header');
+  const themeToggle = document.getElementById('themeToggle');
+
+  /* Light / dark theme (saved preference) */
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('hayat-theme', theme);
+    } catch (e) {}
+    if (themeToggle) {
+      themeToggle.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+      );
+    }
+  }
+
+  try {
+    const saved = localStorage.getItem('hayat-theme');
+    if (saved === 'light' || saved === 'dark') {
+      applyTheme(saved);
+    }
+  } catch (e) {}
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      const next =
+        document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+    });
+  }
 
   // Mobile Menu Toggle
   if (navToggle && nav) {
