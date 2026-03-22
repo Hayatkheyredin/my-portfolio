@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const targetElement = document.querySelector(targetId);
 
       if (targetElement) {
-        const headerOffset = 80;
+        const headerOffset = 88;
         const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -58,38 +58,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Animated Counters
-  const counters = document.querySelectorAll('.stat-value');
-  const options = { threshold: 0.5 };
+  // Animated stat counters (run when stats scroll into view)
+  const counters = document.querySelectorAll('.stat-value[data-count]');
+  const counterOptions = { threshold: 0.45 };
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const target = +counter.getAttribute('data-count');
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
+  const counterObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const counter = entry.target;
+      const target = +counter.getAttribute('data-count');
+      if (Number.isNaN(target)) return;
 
-        let current = 0;
-        const updateCounter = () => {
-          current += increment;
-          if (current < target) {
-            counter.textContent = Math.ceil(current) + (target > 100 ? '+' : '');
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target + (target > 100 ? '+' : '');
-          }
-        };
+      const duration = 2000;
+      const increment = target / (duration / 16);
+      let current = 0;
 
-        updateCounter();
-        observer.unobserve(counter);
-      }
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          const n = Math.ceil(current);
+          counter.textContent = n + (target > 100 ? '+' : '');
+          requestAnimationFrame(updateCounter);
+        } else {
+          const finalLabel = counter.getAttribute('data-display');
+          counter.textContent =
+            finalLabel != null && finalLabel !== ''
+              ? finalLabel
+              : target + (target > 100 ? '+' : '');
+        }
+      };
+
+      updateCounter();
+      obs.unobserve(counter);
     });
-  }, options);
+  }, counterOptions);
 
-  counters.forEach(counter => {
-    observer.observe(counter);
-  });
+  counters.forEach((counter) => counterObserver.observe(counter));
 
   // Scroll Reveal Animation for Sections
   const revealElements = document.querySelectorAll('section');
